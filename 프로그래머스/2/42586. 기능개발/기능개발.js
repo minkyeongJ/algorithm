@@ -9,7 +9,7 @@
 // N일차 = [100, 240, 90]
 
 // (100 - progresses[i])/speeds[i]
-// days = [ 3, 5, 9]
+// days = [ 7, 5, 9]
 
 // answer = []
 
@@ -24,10 +24,6 @@
 // if(curProg[0] >= 100)
 // curProg filter 100이 넘는 값을 반환 = [100, 240] length 2
 
-// [95, 90, 99, 99, 80, 99]
-// [5, 10, 1, 1, 20, 1]
-// [1, 3, 2]
-
 function solution(progresses, speeds) {
     var answer = [];
 
@@ -39,24 +35,15 @@ function solution(progresses, speeds) {
     while(days.length){
         let stack = [days[0]];
 
-        for(let j = 1 ; j < days.length; j++){
-            if(stack[0] >= days[j]) {
-                stack.push(days[j]);
-                console.log('in >>', days[j])
+        for(let i = 1 ; i < days.length; i++){
+            if(stack[0] >= days[i]) {
+                stack.push(days[i]);
             }else{
-                console.log('else', stack, stack[0], days[j])
                 break;
             }
         }
-
         answer.push(stack.length);
         days = days.slice(stack.length);
-        
-        if(days.length === 1) {
-            answer.push(1);
-            days.shift();
-        };
-        
     }
     return answer;
 }
